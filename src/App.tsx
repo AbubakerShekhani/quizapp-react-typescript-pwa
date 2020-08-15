@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import './App.css';
 import { fetchQuiz } from './API';
 import QuestionCard from './components/QuestionCard';
@@ -27,10 +27,7 @@ const App:FC = () =>  {
   const startQuiz = async()  => {
 
     setLoading(true)
-    const quizQuestions = await fetchQuiz(10, difficultyLevel.EASY);
-    console.log(await quizQuestions)
 
-    setQuestions(quizQuestions)
     setLoading(false)
     setQuizEnd(false)
     setquestionNumber(0)
@@ -74,6 +71,17 @@ const App:FC = () =>  {
   }
 
 
+  useEffect(() => {
+
+    (async () => {
+      const quizQuestions = await fetchQuiz(10, difficultyLevel.EASY);
+      console.log(await quizQuestions)
+
+      setQuestions(quizQuestions)
+
+     })();
+
+   }, []);
 
 
   return (
