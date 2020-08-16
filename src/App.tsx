@@ -75,8 +75,6 @@ const App:FC = () =>  {
 
     (async () => {
       const quizQuestions = await fetchQuiz(10, difficultyLevel.EASY);
-      console.log(await quizQuestions)
-
       setQuestions(quizQuestions)
 
      })();
